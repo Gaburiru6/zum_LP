@@ -1,0 +1,61 @@
+/* Custom Styles & Animations */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Base state for scroll animations */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Visible state triggered by JavaScript */
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Delay utilities for staggered animations */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+
+/* Enhanced hover animation for buttons */
+.btn-hover-animate {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-hover-animate:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.dark .btn-hover-animate:hover {
+    box-shadow: 0 10px 20px -5px rgba(255, 255, 255, 0.05), 0 4px 6px -2px rgba(255, 255, 255, 0.02);
+}
+
+/* Floating animation for hero image */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+.img-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Subtle pulse animation for specific elements */
+@keyframes soft-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+.animate-soft-pulse {
+    animation: soft-pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
