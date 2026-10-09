@@ -73,3 +73,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     animatedElements.forEach(el => scrollObserver.observe(el));
 });
+
+    // Analytics/Tracking Logic for Buttons
+    const trackClick = (buttonId) => {
+        // Envia de forma assíncrona o evento de clique para o backend
+        fetch('/api/click', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ button: buttonId })
+        }).catch(err => console.error('Erro ao registrar clique:', err));
+    };
+
+    // Associa o rastreio aos botões que direcionam para o site principal
+    const trackedLinks = document.querySelectorAll('a[href="https://zum.beezes.com.br"]');
+    trackedLinks.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Identifica qual botão foi clicado através do texto
+            const text = this.innerText.toLowerCase();
+            if (text.includes('baixar app')) {
+                trackClick('baixar_app');
+            } else if (text.includes('eu quero')) {
+                trackClick('eu_quero');
+            } else {
+                trackClick('outro');
+            }
+        });
+    });
